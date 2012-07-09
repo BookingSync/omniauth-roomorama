@@ -7,6 +7,14 @@ shared_examples 'an oauth2 strategy' do
   end
 
   describe '#authorize_params' do
+    before do
+      OmniAuth.config.test_mode = true
+    end
+
+    after do
+      OmniAuth.config.test_mode = false
+    end
+
     it 'should include any authorize params passed in the :authorize_params option' do
       @options = { :authorize_params => { :foo => 'bar', :baz => 'zip' } }
       subject.authorize_params['foo'].should eq('bar')
@@ -17,6 +25,16 @@ shared_examples 'an oauth2 strategy' do
       @options = { :authorize_options => [:scope, :foo], :scope => 'bar', :foo => 'baz' }
       subject.authorize_params['scope'].should eq('bar')
       subject.authorize_params['foo'].should eq('baz')
+    end
+
+    it 'should include a generated state parameter' do
+      @options = { :authorize_params => { } }
+      subject.authorize_params['state'].should_not be_nil
+    end
+
+    it 'should reuse the given state parameter' do
+      @options = { :authorize_params => { :state => 'CustomStateToken' } }
+      subject.authorize_params['state'].should eq('CustomStateToken')
     end
   end
 
