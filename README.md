@@ -1,5 +1,10 @@
 # OmniAuth Roomorama
 
+## IMPORTANT
+This project is now [managed by Roomorama directly](https://github.com/roomorama/omniauth-roomorama)
+
+
+---
 This is an OmniAuth 1.0 strategy for authenticating to Roomorama. To
 use it, you'll need to sign up for an OAuth2 Application ID and Secret
 on the [Roomorama Application's Registration Page](https://roomorama.com/oauth_clients/new).

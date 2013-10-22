@@ -9,7 +9,7 @@ require 'omniauth-roomorama'
 use Rack::Session::Cookie
 
 use OmniAuth::Builder do
-  provider :roomorama, "xhphaTy1kl0Yjqan1ZgHGw", "E9PVZNSWbluCqqSjy9wH8tUb6ttTkaHy6wV38724o"
+  provider :roomorama, ENV['ROOMORAMA_KEY'], ENV['ROOMORAMA_SECRET']
 end
 
 get '/' do
